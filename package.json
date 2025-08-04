@@ -2,11 +2,10 @@
   "name": "dsa",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node --experimental-strip-types index.ts",
     "start:file": "node --experimental-strip-types",
-    "test": "jest"
+    "test": "jest --config=jest.config.cjs"
   },
   "keywords": [],
   "author": "",
