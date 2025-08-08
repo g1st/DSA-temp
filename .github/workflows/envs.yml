@@ -1,9 +1,9 @@
 name: Environments test
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
   repository_dispatch:
 
@@ -41,7 +41,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Completion
-        run: echo "Fake deploy to ${{ github.env }}."
+        run: echo "Fake deploy to dev."
+      - name: Echo secret
+        run: echo "${{ secrets.CITY }}"
+      - name: Echo env
+        run: echo "${{ env.COUNTRY }}"
 
   prod_deploy:
     runs-on: ubuntu-latest
@@ -51,4 +55,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Completion
-        run: echo "Fake deploy to ${{ github.env }}."
+        run: echo "Fake deploy to prod."
+      - name: Echo secret
+        run: echo "${{ secrets.CITY }}"
+      - name: Echo env
+        run: echo "${{ env.COUNTRY }}"
