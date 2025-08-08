@@ -3,6 +3,10 @@ name: Environments test
 on:
   workflow_dispatch:
 
+env:
+  country: ${{ vars.COUNTRY }}
+  village: ${{ vars.VILLAGE }}
+
 jobs:
   build:
     name: Build job
@@ -39,9 +43,9 @@ jobs:
       - name: Completion
         run: echo "Fake deploy to dev."
       - name: Echo secret
-        run: echo "${{ secrets.CITY }}"
+        run: echo "${{ secrets.CITY }} and ${{ secrets.FOO }}"
       - name: Echo env
-        run: echo "${{ env.COUNTRY }}"
+        run: echo "${{ env.country }} and ${{ env.village}}"
 
   prod_deploy:
     runs-on: ubuntu-latest
@@ -53,6 +57,6 @@ jobs:
       - name: Completion
         run: echo "Fake deploy to prod."
       - name: Echo secret
-        run: echo "${{ secrets.CITY }}"
+        run: echo "${{ secrets.CITY }} and ${{ secrets.FOO }}"
       - name: Echo env
-        run: echo "${{ env.COUNTRY }}"
+        run: echo "${{ env.country }} and ${{ env.village}}"
