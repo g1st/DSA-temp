@@ -5,8 +5,7 @@ on:
   #   branches:
   #     - main
 
-  repository_dispatch:
-    types: [custom-event]
+  workflow_run:
 
 jobs:
   build:
