@@ -1,0 +1,52 @@
+name: Environments test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build job
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Run fake build
+        run: npm run build
+
+      - name: Completion
+        run: echo "Hello ${{ github.actor }}. You pushed to ${{ github.repository }} at $(date)."
+
+  dev_deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Completion
+        run: echo "Fake deploy to ${{ github.env }}."
+
+  prod_deploy:
+    runs-on: ubuntu-latest
+    needs: [dev_deploy]
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Completion
+        run: echo "Fake deploy to ${{ github.env }}."
