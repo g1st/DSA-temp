@@ -1,10 +1,6 @@
 name: Environments test
 
 on:
-  # push:
-  #   branches:
-  #     - main
-
   repository_dispatch:
 
 jobs:
