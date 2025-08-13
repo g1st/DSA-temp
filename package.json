@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-strip-types tries.ts",
+    "start": "node --experimental-strip-types graphs.ts",
     "start:file": "node --experimental-strip-types",
     "test": "jest --config=jest.config.cjs",
     "build": "echo 'fake complete'"
